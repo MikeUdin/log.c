@@ -1,5 +1,6 @@
 #include <sys/time.h>
 #include "log.h"
+#include <libgen.h>
 
 #define MAX_CALLBACKS 32
 
@@ -133,7 +134,7 @@ void log_log(int level, const char *file, int line, const char *fmt, ...) {
     int i = 0;
     log_Event ev = {
         .fmt = fmt,
-        .file = file,
+        .file = basename((char*)file),
         .line = line,
         .level = level,
     };
